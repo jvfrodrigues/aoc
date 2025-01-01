@@ -4,6 +4,7 @@ import (
 	"aoc/internal/domain"
 	"aoc/internal/utils"
 	"slices"
+	"strconv"
 )
 
 const Title = "Day 6: Guard Gallivant"
@@ -80,16 +81,16 @@ func readLines(lines []string) ([][]string, []int, map[string][]int) {
 }
 
 func addObstacle(height, length int, obstacles map[string][]int) {
-	_, ok := obstacles["y"+string(height)]
+	_, ok := obstacles["y"+strconv.Itoa(height)]
 	if !ok {
-		obstacles["y"+string(height)] = make([]int, 0)
+		obstacles["y"+strconv.Itoa(height)] = make([]int, 0)
 	}
-	obstacles["y"+string(height)] = append(obstacles["y"+string(height)], length)
-	_, ok = obstacles["x"+string(length)]
+	obstacles["y"+strconv.Itoa(height)] = append(obstacles["y"+strconv.Itoa(height)], length)
+	_, ok = obstacles["x"+strconv.Itoa(length)]
 	if !ok {
-		obstacles["x"+string(length)] = make([]int, 0)
+		obstacles["x"+strconv.Itoa(length)] = make([]int, 0)
 	}
-	obstacles["x"+string(length)] = append(obstacles["x"+string(length)], height)
+	obstacles["x"+strconv.Itoa(length)] = append(obstacles["x"+strconv.Itoa(length)], height)
 }
 
 func followPath(height, length int, area [][]string, seen map[[2]int]bool, direction string) {
@@ -156,18 +157,18 @@ func checkItCanLoop(height, length int, direction string, area [][]string, obsta
 		copyObstacles[key] = make([]int, 0)
 		copyObstacles[key] = append(copyObstacles[key], value...)
 	}
-	_, ok = copyObstacles["y"+string(possibleObstacleHeight)]
+	_, ok = copyObstacles["y"+strconv.Itoa(possibleObstacleHeight)]
 	if !ok {
-		copyObstacles["y"+string(possibleObstacleHeight)] = make([]int, 0)
+		copyObstacles["y"+strconv.Itoa(possibleObstacleHeight)] = make([]int, 0)
 	}
-	copyObstacles["y"+string(possibleObstacleHeight)] = append(copyObstacles["y"+string(possibleObstacleHeight)], possibleObstacleLength)
-	slices.Sort(copyObstacles["y"+string(possibleObstacleHeight)])
-	_, ok = copyObstacles["x"+string(possibleObstacleLength)]
+	copyObstacles["y"+strconv.Itoa(possibleObstacleHeight)] = append(copyObstacles["y"+strconv.Itoa(possibleObstacleHeight)], possibleObstacleLength)
+	slices.Sort(copyObstacles["y"+strconv.Itoa(possibleObstacleHeight)])
+	_, ok = copyObstacles["x"+strconv.Itoa(possibleObstacleLength)]
 	if !ok {
-		copyObstacles["x"+string(possibleObstacleLength)] = make([]int, 0)
+		copyObstacles["x"+strconv.Itoa(possibleObstacleLength)] = make([]int, 0)
 	}
-	copyObstacles["x"+string(possibleObstacleLength)] = append(copyObstacles["x"+string(possibleObstacleLength)], possibleObstacleHeight)
-	slices.Sort(copyObstacles["x"+string(possibleObstacleLength)])
+	copyObstacles["x"+strconv.Itoa(possibleObstacleLength)] = append(copyObstacles["x"+strconv.Itoa(possibleObstacleLength)], possibleObstacleHeight)
+	slices.Sort(copyObstacles["x"+strconv.Itoa(possibleObstacleLength)])
 
 	arr := [2]int{possibleObstacleHeight, possibleObstacleLength}
 	seenObstacles[arr] = make(map[string]bool)
@@ -178,7 +179,7 @@ func checkItCanLoop(height, length int, direction string, area [][]string, obsta
 	for {
 		closest := [2]int{-1, -1}
 		if nextDirection == "up" || nextDirection == "down" {
-			heights, ok := copyObstacles["x"+string(possiblePosLength)]
+			heights, ok := copyObstacles["x"+strconv.Itoa(possiblePosLength)]
 			if !ok {
 				return false
 			}
@@ -201,7 +202,7 @@ func checkItCanLoop(height, length int, direction string, area [][]string, obsta
 				}
 			}
 		} else {
-			lengths, ok := copyObstacles["y"+string(possiblePosHeight)]
+			lengths, ok := copyObstacles["y"+strconv.Itoa(possiblePosHeight)]
 			if !ok {
 				return false
 			}

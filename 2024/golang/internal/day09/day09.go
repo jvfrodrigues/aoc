@@ -94,9 +94,9 @@ func compactDefragmentedData(dataBlocks []DataBlock, emptyBlocks map[int][]int) 
 				continue
 			}
 			first := arr[0]
-            if first >= idxRight {
-                continue
-            }
+			if first >= idxRight {
+				continue
+			}
 			emptyBlocks[key] = emptyBlocks[key][1:]
 			sizeDiff := key - currRight.Size
 			if sizeDiff == 0 {
