@@ -11,6 +11,8 @@ import (
 	"aoc/internal/day08"
 	"aoc/internal/day09"
 	"aoc/internal/day10"
+	"aoc/internal/day11"
+	"aoc/internal/day12"
 	"aoc/internal/domain"
 )
 
@@ -25,4 +27,6 @@ var AdventDays = []domain.AdventInterface{
 	day08.Day(),
 	day09.Day(),
 	day10.Day(),
+	day11.Day(),
+	day12.Day(),
 }
