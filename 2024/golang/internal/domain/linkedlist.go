@@ -51,13 +51,14 @@ func (l *LinkedList[T]) Add(value T, pos int) {
 	newElement := &LinkedElement[T]{
 		Value: value,
 	}
-	if pos == 0 {
+	switch pos {
+	case 0:
 		l.Enqueue(value)
 		return
-	} else if pos == l.Length-1 {
+	case l.Length - 1:
 		l.Push(value)
 		return
-	} else {
+	default:
 		currAtPos := l.Get(pos)
 		newElement.before = currAtPos.before
 		currAtPos.before.after = newElement

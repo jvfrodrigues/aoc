@@ -10,7 +10,7 @@ import (
 
 const Title = "Day 2: Red-Nosed Reports"
 
-var lines = utils.ReadFile("./data/day02/inputgui.txt")
+var lines = utils.ReadFile("./data/day02/input.txt")
 
 func Day() domain.AdventInterface {
 	return domain.Advent[int]{
@@ -57,7 +57,7 @@ func PartTwo() int {
 
         // PART 2 DIFFERENCE
 		if !isSafe {
-			for idx, _ := range levelsNum {
+			for idx := range levelsNum {
                 copyArr := append([]int{}, levelsNum...)
                 alteredLevels := utils.SliceRemove(copyArr, idx)
 				isAlteredSafe := checkReport(alteredLevels)

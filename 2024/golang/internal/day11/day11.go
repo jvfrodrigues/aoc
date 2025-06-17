@@ -3,6 +3,7 @@ package day11
 import (
 	"aoc/internal/domain"
 	"aoc/internal/utils"
+	"maps"
 	"math"
 	"strconv"
 	"strings"
@@ -42,10 +43,8 @@ func PartTwo() int {
 
 func iterateStones(stones map[int64]int, iterations int) map[int64]int {
 	endStones := make(map[int64]int)
-	for key, value := range stones {
-		endStones[key] = value
-	}
-	for i := 0; i < iterations; i++ {
+	maps.Copy(endStones, stones)
+	for range iterations {
 		updatedStones := make(map[int64]int)
 		for stone, count := range endStones {
 			stringValue := strconv.FormatInt(stone, 10)

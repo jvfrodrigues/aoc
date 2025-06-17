@@ -44,7 +44,7 @@ func PartOne() int {
 	slices.SortFunc(right, func(a, b int) int {
 		return a - b
 	})
-	for idx, _ := range left {
+	for idx := range left {
 		total += int(math.Abs(float64(left[idx] - right[idx])))
 	}
 	return total

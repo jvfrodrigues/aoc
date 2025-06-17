@@ -44,7 +44,7 @@ func findRegions(garden [][]string) int {
 		seen[idx] = make([]bool, len(garden[idx]))
 	}
 	for y, line := range garden {
-		for x, _ := range line {
+		for x := range line {
 			if seen[y][x] {
 				continue
 			}
